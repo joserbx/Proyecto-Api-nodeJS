@@ -1,6 +1,6 @@
 // controllers/clientController.js
-import { yourSchema } from "../utils/validation.js";
-import * as clientesModel from "../models/clientesModel.js";
+import { clienteSchema } from "../utils/validation.js";
+import * as clientesModel from "../models/clientes.js";
 
 // Obtener todos los clientes
 export const getAllClientes = async (req, res) => {
@@ -34,10 +34,9 @@ export const getClienteById = async (req, res) => {
 // Crear un nuevo cliente
 export const createCliente = async (req, res) => {
   const clienteData = req.body;
-
   try {
     // Validar los datos del cliente
-    const validData = yourSchema.parse(clienteData);
+    const validData = clienteSchema.parse(clienteData);
 
     const nuevoCliente = await clientesModel.createCliente(validData);
     res.status(201).json(nuevoCliente);
@@ -60,7 +59,7 @@ export const updateCliente = async (req, res) => {
 
   try {
     // Validar los datos del cliente
-    const validData = yourSchema.parse(clienteData);
+    const validData = clienteSchema.parse(clienteData);
 
     const clienteActualizado = await clientesModel.updateCliente(id, validData);
 

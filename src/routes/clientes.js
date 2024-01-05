@@ -1,6 +1,6 @@
 // yourRouter.js
 import express from "express";
-import * as clientesController from "../controllers/clientesController.js";
+import * as clientesController from "../controllers/clientes.js";
 
 const router = express.Router();
 

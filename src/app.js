@@ -1,9 +1,7 @@
-import * as dotenv from "dotenv";
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import clientesRouter from "./routes/clientesRouter.js";
-
-dotenv.config();
+import clientesRouter from "./routes/clientes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;

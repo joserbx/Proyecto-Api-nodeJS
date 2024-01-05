@@ -13,7 +13,7 @@ export const getAllClientes = async () => {
 // Obtener un cliente por ID
 export const getClienteById = async (id) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM clientes WHERE id = ?', [id]);
+    const [rows] = await pool.query('SELECT * FROM clientes WHERE IDCLIENTE = ?', [id]);
     if (rows.length === 1) {
       return rows[0];
     } else {
@@ -26,9 +26,11 @@ export const getClienteById = async (id) => {
 
 // Crear un nuevo cliente
 export const createCliente = async (clienteData) => {
+  console.log(clienteData);
   try {
-    const [result] = await pool.query('INSERT INTO clientes SET ?', [clienteData]);
-    return { id: result.insertId, ...clienteData };
+    const [result] = await pool.query(
+      'INSERT INTO clientes SET ?', [clienteData]);
+    return { IDCLIENTE: result.insertId, ...clienteData };
   } catch (error) {
     throw error;
   }
@@ -37,7 +39,7 @@ export const createCliente = async (clienteData) => {
 // Actualizar un cliente por ID
 export const updateCliente = async (id, clienteData) => {
   try {
-    const [result] = await pool.query('UPDATE clientes SET ? WHERE id = ?', [clienteData, id]);
+    const [result] = await pool.query('UPDATE clientes SET ? WHERE IDCLIENTE = ?', [clienteData, id]);
     if (result.affectedRows === 1) {
       return { id, ...clienteData };
     } else {
@@ -51,7 +53,7 @@ export const updateCliente = async (id, clienteData) => {
 // Eliminar un cliente por ID
 export const deleteCliente = async (id) => {
   try {
-    const [result] = await pool.query('DELETE FROM clientes WHERE id = ?', [id]);
+    const [result] = await pool.query('DELETE FROM clientes WHERE IDCLIENTE = ?', [id]);
     if (result.affectedRows === 1) {
       return { id };
     } else {
