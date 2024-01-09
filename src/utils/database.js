@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { createPool } from "mysql2/promise"; // Cambiado para usar el paquete promise
+import pc from "picocolors";
 
 const pool = createPool({
   host: process.env.DB_HOST,
@@ -9,6 +10,6 @@ const pool = createPool({
   database: process.env.DB_DATABASE,
 });
 
-console.log(`Connected to database ${process.env.DB_NAME}`);
+console.log(`Connected to database ${pc.magenta(process.env.DB_NAME)}`);
 
 export default pool;

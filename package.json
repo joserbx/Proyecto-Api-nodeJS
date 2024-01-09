@@ -18,5 +18,8 @@
     "express": "4.18.2",
     "mysql2": "3.6.5",
     "zod": "3.22.4"
+  },
+  "dependencies": {
+    "picocolors": "1.0.0"
   }
 }
